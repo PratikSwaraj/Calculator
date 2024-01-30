@@ -3,6 +3,7 @@ import "./styles.css";
 
 export default function App() {
   const [value, setValue] = useState("");
+  let [ans, setAns] = useState("");
 
   const bone = () => {
     setValue((prev) => prev + "1");
@@ -36,6 +37,7 @@ export default function App() {
   };
   const clear = () => {
     setValue("");
+    setAns("");
   };
   const bplus = () => {
     setValue((prev) => prev + "+");
@@ -50,14 +52,16 @@ export default function App() {
     setValue((prev) => prev + "/");
   };
   const bequals = () => {
-    let ans = eval(value);
-    setValue(ans);
+    ans = eval(value);
+    if (value == "") setAns("Error");
+    else setAns(ans);
   };
   return (
     <div className="App">
       <h1>React Calculator</h1>
       <input type="text" value={value} />
-      <h2 style={{ color: "gray" }}>{}</h2>
+      <div style={{ color: "gray" }}>{ans}</div>
+
       <div>
         <div>
           <button className="but" onClick={bseven}>
